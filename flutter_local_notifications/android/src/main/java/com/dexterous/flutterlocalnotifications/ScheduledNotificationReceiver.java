@@ -14,6 +14,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Build;
 import android.os.Vibrator;
 import android.service.notification.StatusBarNotification;
@@ -128,8 +129,12 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
       }
     }
     //2. 播放声音
-    MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.notice);
-    mediaPlayer.start();
+    SoundPool soundPool = null;
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+      soundPool = new SoundPool.Builder().build();
+      int soundId = soundPool.load(context, R.raw.notice, 1);
+      soundPool.play(soundId, 1, 1, 0, 0, 1);
+    }
     //3. 震动
     Vibrator vib = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
     vib.vibrate(new long[] {500, 1000, 500, 1000}, -1);
