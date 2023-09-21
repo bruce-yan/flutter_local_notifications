@@ -623,7 +623,7 @@ public class FlutterLocalNotificationsPlugin
     return notificationResponseMap;
   }
 
-  private static PendingIntent getBroadcastPendingIntent(Context context, int id, Intent intent) {
+  static PendingIntent getBroadcastPendingIntent(Context context, int id, Intent intent) {
     int flags = PendingIntent.FLAG_UPDATE_CURRENT;
     if (VERSION.SDK_INT >= VERSION_CODES.M) {
       flags |= PendingIntent.FLAG_IMMUTABLE;
@@ -1207,7 +1207,7 @@ public class FlutterLocalNotificationsPlugin
     return uri;
   }
 
-  private static AlarmManager getAlarmManager(Context context) {
+  static AlarmManager getAlarmManager(Context context) {
     return (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
   }
 
@@ -1311,7 +1311,7 @@ public class FlutterLocalNotificationsPlugin
     return null;
   }
 
-  private static NotificationManagerCompat getNotificationManager(Context context) {
+  static NotificationManagerCompat getNotificationManager(Context context) {
     return NotificationManagerCompat.from(context);
   }
 
