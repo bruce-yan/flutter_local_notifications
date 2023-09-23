@@ -124,7 +124,7 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
     StatusBarNotification[] sn = getActiveNotifications(context);
     int len = sn.length;
     for (int i = 0; i < len; i++) {
-      if(sn[i].getId() > 0 && sn[i].getId() < 9){
+      if(sn[i].getId() > 0 && sn[i].getId() < 100){
         cancelNotification(context, sn[i].getId(), sn[i].getTag());
       }
     }
